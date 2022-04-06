@@ -1,1 +1,3 @@
 com\mycompany\configs\WebAppContextConfig.class
+com\mycompany\controllers\HomeController.class
+com\mycompany\configs\DispatcherServletInit.class
