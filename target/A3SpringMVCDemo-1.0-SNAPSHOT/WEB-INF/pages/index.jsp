@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,8 @@
         <title>Homepage</title>
     </head>
     <body>
+        <h1><spring:message code="page.title"/></h1>
         <h1>Hello ${name}!</h1>
+        <h3><spring:message code="page.welcome"/></h3>
     </body>
 </html>
