@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Bus.findAll", query = "SELECT b FROM Bus b"),
     @NamedQuery(name = "Bus.findById", query = "SELECT b FROM Bus b WHERE b.id = :id"),
-    @NamedQuery(name = "Bus.findByBusNo", query = "SELECT b FROM Bus b WHERE b.busNo = :busNo")})
+    @NamedQuery(name = "Bus.findByBusNo", query = "SELECT b FROM Bus b WHERE b.busNo = :busNo"),
+    @NamedQuery(name = "Bus.findByNumSeat", query = "SELECT b FROM Bus b WHERE b.numSeat = :numSeat")})
 public class Bus implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,6 +46,8 @@ public class Bus implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "busNo")
     private String busNo;
+    @Column(name = "num_seat")
+    private Integer numSeat;
     @OneToMany(mappedBy = "busId")
     private List<Trip> tripList;
 
@@ -74,6 +77,14 @@ public class Bus implements Serializable {
 
     public void setBusNo(String busNo) {
         this.busNo = busNo;
+    }
+
+    public Integer getNumSeat() {
+        return numSeat;
+    }
+
+    public void setNumSeat(Integer numSeat) {
+        this.numSeat = numSeat;
     }
 
     @XmlTransient
