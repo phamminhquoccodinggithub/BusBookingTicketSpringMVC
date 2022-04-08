@@ -4,7 +4,14 @@
  */
 package com.mycompany.controllers;
 
+
+import com.mycompany.pojo.Bus;
+import java.util.List;
 import java.util.Map;
+import javax.persistence.Query;
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +24,16 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class HomeController {
-    @RequestMapping(value = "/")
+    @Autowired
+    private LocalSessionFactoryBean sessionFactory;
+    
+    @RequestMapping("/")
     public String index(Model model){
-        model.addAttribute("name", "My Friend");
+        Session session = sessionFactory.getObject().openSession();
+        Query q =session.createQuery("From Bus");
+        List<Bus> buses =  q.getResultList();
+        session.close();
+        model.addAttribute("name", "Nguyen Van A");
         return "index";
     }
     @RequestMapping("test/{name}")

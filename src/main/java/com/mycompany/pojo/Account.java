@@ -30,9 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Account.findById", query = "SELECT a FROM Account a WHERE a.id = :id"),
     @NamedQuery(name = "Account.findByUsername", query = "SELECT a FROM Account a WHERE a.username = :username"),
     @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password"),
-    @NamedQuery(name = "Account.findByAvatar", query = "SELECT a FROM Account a WHERE a.avatar = :avatar"),
-    @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a WHERE a.email = :email"),
-    @NamedQuery(name = "Account.findByName", query = "SELECT a FROM Account a WHERE a.name = :name")})
+    @NamedQuery(name = "Account.findByAvatar", query = "SELECT a FROM Account a WHERE a.avatar = :avatar")})
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,18 +49,9 @@ public class Account implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "password")
     private String password;
-    @Size(max = 100)
+    @Size(max = 45)
     @Column(name = "avatar")
     private String avatar;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 100)
-    @Column(name = "email")
-    private String email;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "name")
-    private String name;
 
     public Account() {
     }
@@ -71,11 +60,10 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Account(Integer id, String username, String password, String name) {
+    public Account(Integer id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -108,22 +96,6 @@ public class Account implements Serializable {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override

@@ -3,6 +3,10 @@
   <persistence-unit name="com.mycompany_A3SpringMVCDemo_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.mycompany.pojo.Account</class>
+    <class>com.mycompany.pojo.Trip</class>
+    <class>com.mycompany.pojo.Bus</class>
+    <class>com.mycompany.pojo.Passenger</class>
+    <class>com.mycompany.pojo.Booking</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/busbooking?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
