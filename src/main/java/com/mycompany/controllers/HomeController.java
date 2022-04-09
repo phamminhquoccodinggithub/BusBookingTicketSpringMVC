@@ -6,6 +6,7 @@ package com.mycompany.controllers;
 
 
 import com.mycompany.pojo.Bus;
+import com.mycompany.service.BusService;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
@@ -26,19 +27,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
     @Autowired
+    private BusService BusService;
+    @Autowired
     private LocalSessionFactoryBean sessionFactory;
-    
     @RequestMapping("/")
-    @Transactional
     public String index(Model model){
-        Session session = sessionFactory.getObject().getCurrentSession();
-        Query q =session.createQuery("From Bus");
-        List<Bus> buses =  q.getResultList();
-//        session.close();
-        model.addAttribute("name", "Nguyen Van A");
-        model.addAttribute("buses", buses);
+        model.addAttribute("buses", this.BusService.getBuses());
         return "index";
     }
+//    @RequestMapping("/")
+//    @Transactional
+//    public String index(Model model){
+//        Session session = sessionFactory.getObject().getCurrentSession();
+//        Query q =session.createQuery("From Bus");
+//        List<Bus> buses =  q.getResultList();
+////        session.close();
+//        model.addAttribute("name", "Nguyen Van A");
+//        model.addAttribute("buses", buses);
+//        return "index";
+//    }
     @RequestMapping("test/{name}")
     public String test(@PathVariable(name = "name") String name,
             Model model){
