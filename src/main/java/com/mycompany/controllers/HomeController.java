@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +29,12 @@ public class HomeController {
     private LocalSessionFactoryBean sessionFactory;
     
     @RequestMapping("/")
+    @Transactional
     public String index(Model model){
-        Session session = sessionFactory.getObject().openSession();
+        Session session = sessionFactory.getObject().getCurrentSession();
         Query q =session.createQuery("From Bus");
         List<Bus> buses =  q.getResultList();
-        session.close();
+//        session.close();
         model.addAttribute("name", "Nguyen Van A");
         model.addAttribute("buses", buses);
         return "index";
