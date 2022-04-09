@@ -30,6 +30,8 @@ public class HibernateConfig {
         factory.setPackagesToScan(new String[]{
             "com.mycompany.pojo"
         });
+        factory.setDataSource(dataSource());
+        factory.setHibernateProperties(hibernateProperties());
         return factory;
     }
     @Bean

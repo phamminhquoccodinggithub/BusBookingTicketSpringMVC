@@ -18,6 +18,12 @@
         <h1><spring:message code="page.title"/></h1>
         <h1>Hello ${name}!</h1>
         <h3><spring:message code="page.welcome"/></h3>
-        <h3><img src="<c:url value="/img/bus.jpg"/>"</h3>
+        <h3><img src="<c:url value="/img/bus.jpg"/>" />
+        </h3>
+        <ul>
+            <c:forEach items="${buses}" var="bus">
+                <li>${bus.id} - ${bus.busNo}</li>
+                </c:forEach>
+        </ul>
     </body>
 </html>

@@ -34,6 +34,7 @@ public class HomeController {
         List<Bus> buses =  q.getResultList();
         session.close();
         model.addAttribute("name", "Nguyen Van A");
+        model.addAttribute("buses", buses);
         return "index";
     }
     @RequestMapping("test/{name}")
