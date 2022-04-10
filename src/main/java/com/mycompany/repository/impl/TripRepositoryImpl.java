@@ -41,6 +41,17 @@ public class TripRepositoryImpl implements TripRepository{
         }
         Query query = session.createQuery(q);
         return query.getResultList();
+    }    
+
+    @Override
+    public boolean addOrUpdateTrip(Trip trip) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.save(trip);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
-    
 }
