@@ -53,5 +53,11 @@
                 <li>${bus.id} - ${bus.busNo} - ${bus.numSeat}</li>
                 </c:forEach>
         </ul>
+         <div class="container">
+             <c:forEach items="${trips}" var="trip">
+                <li>${trip.id} - ${trip.source} - ${trip.destination} - ${trip.depatureTime} - ${trip.arriveTime} - ${trip.price}</li>
+                </c:forEach>
+             
+         </div>
     </body>
 </html>

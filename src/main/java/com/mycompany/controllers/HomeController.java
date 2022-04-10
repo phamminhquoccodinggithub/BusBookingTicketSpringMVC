@@ -7,6 +7,7 @@ package com.mycompany.controllers;
 
 import com.mycompany.pojo.Bus;
 import com.mycompany.service.BusService;
+import com.mycompany.service.TripService;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
@@ -27,12 +28,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
     @Autowired
-    private BusService BusService;
+    private BusService busService;
+    @Autowired
+    private TripService tripService;
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
     @RequestMapping("/")
     public String index(Model model){
-        model.addAttribute("buses", this.BusService.getBuses());
+        model.addAttribute("buses", this.busService.getBuses());
+        model.addAttribute("trips", this.tripService.getTrips(null));
         return "index";
     }
 //    @RequestMapping("/")
