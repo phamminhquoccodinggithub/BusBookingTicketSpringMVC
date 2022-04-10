@@ -19,9 +19,15 @@ import org.springframework.stereotype.Service;
 public class TripServiceImpl implements TripService{
     @Autowired
     private TripRepository tripRepository;
+    
     @Override
     public List<Trip> getTrips(String kw) {
         return this.tripRepository.getTrips(kw);
+    }
+
+    @Override
+    public boolean addOrUpdateTrip(Trip trip) {
+        return this.tripRepository.addOrUpdateTrip(trip);
     }
     
 }

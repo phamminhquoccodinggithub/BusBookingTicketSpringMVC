@@ -25,6 +25,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -54,12 +55,14 @@ public class Trip implements Serializable {
     private String source;
     @Size(max = 45)
     @Column(name = "destination")
-    private String destination;
+    private String destination;    
     @Column(name = "depature_time")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date depatureTime;
     @Column(name = "arrive_time")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date arriveTime;
     @Column(name = "price")
     private Long price;

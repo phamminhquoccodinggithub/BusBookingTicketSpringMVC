@@ -4,12 +4,15 @@
  */
 package com.mycompany.configs;
 
+import com.mycompany.formatter.BusFormatter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -30,16 +33,18 @@ import org.springframework.web.servlet.view.JstlView;
     "com.mycompany.service"
 })
 public class WebAppContextConfig implements WebMvcConfigurer {
-    
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry){
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/resources/css/");
         registry.addResourceHandler("/img/**").addResourceLocations("/resources/images/");
     }
+
     @Bean
     public InternalResourceViewResolver getInternalResourceViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -48,11 +53,22 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         resolver.setSuffix(".jsp");
         return resolver;
     }
+
     @Bean
-    public MessageSource messageSource(){
+    public MessageSource messageSource() {
         ResourceBundleMessageSource msg = new ResourceBundleMessageSource();
         msg.setBasenames("messages");
         return msg;
     }
-    
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new BusFormatter());
+    }
+    @Bean
+    public CommonsMultipartResolver multipartResolver(){
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("UTF-8");
+        return resolver;
+    }
 }

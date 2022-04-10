@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface TripService {
     public List<Trip> getTrips(String kw);
+    public boolean addOrUpdateTrip(Trip trip);
 }
