@@ -37,6 +37,7 @@ public class TripRepositoryImpl implements TripRepository{
         if(kw!=null && !kw.isEmpty()){
             Predicate p = b.like(root.get("name").as(String.class),
                     String.format("%%%s%%", kw));
+            q.where(p);
         }
         Query query = session.createQuery(q);
         return query.getResultList();

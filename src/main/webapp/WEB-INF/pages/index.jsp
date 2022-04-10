@@ -55,7 +55,7 @@
         </ul>
          <div class="container">
              <c:forEach items="${trips}" var="trip">
-                <li>${trip.id} - ${trip.source} - ${trip.destination} - ${trip.depatureTime} - ${trip.arriveTime} - ${trip.price}</li>
+                <li>${trip.id} - ${trip.source} - ${trip.destination} - ${trip.depatureTime} - ${trip.arriveTime} - ${trip.price} VND</li>
                 </c:forEach>
              
          </div>
