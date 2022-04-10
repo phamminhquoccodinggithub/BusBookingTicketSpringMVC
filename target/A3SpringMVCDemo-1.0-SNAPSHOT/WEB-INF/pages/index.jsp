@@ -48,5 +48,10 @@
             </div>
         </nav>
          <img src="<c:url value="/img/bus.jpg"/>" />
+         <ul>
+            <c:forEach items="${buses}" var="bus">
+                <li>${bus.id} - ${bus.busNo} - ${bus.numSeat}</li>
+                </c:forEach>
+        </ul>
     </body>
 </html>
