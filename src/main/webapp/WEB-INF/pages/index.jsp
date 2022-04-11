@@ -14,7 +14,7 @@
     <div class="container">
         <div>            
             <label></label>
-            <input type="text" placeholder="Source" name="source" style="padding: 10px"/>
+            <input type="text" placeholder="Source" name="kw" style="padding: 10px"/>
             <label  style="padding: 10px"></label>
             <input  type="text" placeholder="Destination" style="padding: 10px"/>
             <label  style="padding: 10px"></label>
