@@ -21,13 +21,18 @@ public class TripServiceImpl implements TripService{
     private TripRepository tripRepository;
     
     @Override
-    public List<Trip> getTrips(String kw) {
-        return this.tripRepository.getTrips(kw);
+    public List<Trip> getTrips(String kw, int page) {
+        return this.tripRepository.getTrips(kw, page);
     }
 
     @Override
     public boolean addOrUpdateTrip(Trip trip) {
         return this.tripRepository.addOrUpdateTrip(trip);
+    }
+
+    @Override
+    public int countTrips() {
+        return this.tripRepository.countTrips();
     }
     
 }

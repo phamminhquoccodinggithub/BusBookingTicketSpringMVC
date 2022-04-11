@@ -14,6 +14,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,23 +26,32 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
+@PropertySource("classpath:info.properties")
 public class TripRepositoryImpl implements TripRepository{
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
+    @Autowired
+    private Environment env;
     @Override
-    public List<Trip> getTrips(String kw) {
+    public List<Trip> getTrips(String kw, int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
         CriteriaQuery<Trip> q = b.createQuery(Trip.class);
         Root root = q.from(Trip.class);
         q.select(root);
         if(kw!=null && !kw.isEmpty()){
-            Predicate p = b.like(root.get("name").as(String.class),
+            Predicate p = b.like(root.get("source").as(String.class),
                     String.format("%%%s%%", kw));
             q.where(p);
         }
         q.orderBy(b.desc(root.get("id")));
         Query query = session.createQuery(q);
+        int pageSize = Integer.parseInt(env.getProperty("info.page_size"));
+        int start = (page -1) * pageSize;
+        
+        query.setMaxResults(pageSize);
+        query.setFirstResult(start);
+        
         return query.getResultList();
     }    
 
@@ -54,5 +65,13 @@ public class TripRepositoryImpl implements TripRepository{
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public int countTrips() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery(("Select count(*) from Trip "));
+        Object re = q.getSingleResult();
+        return  Integer.parseInt(re.toString());
     }
 }

@@ -36,13 +36,16 @@ public class HomeController {
     @RequestMapping("/")
     public String index(Model model){
         model.addAttribute("buses", this.busService.getBuses());
-        model.addAttribute("trips", this.tripService.getTrips(null));
+        
         return "index";
     }
     @RequestMapping("/trip")
-    public String trip(Model model){
+    public String trip(Model model,
+            @RequestParam(name = "kw", required = false)String kw,
+            @RequestParam(name = "page", defaultValue = "1") Integer page){
         model.addAttribute("buses", this.busService.getBuses());
-        model.addAttribute("trips", this.tripService.getTrips(null));
+        model.addAttribute("trips", this.tripService.getTrips(kw, page));
+        model.addAttribute("tripCounter", this.tripService.countTrips());
         return "trip";
     }
 //    @RequestMapping("/")

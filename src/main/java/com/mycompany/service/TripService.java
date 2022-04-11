@@ -12,6 +12,7 @@ import java.util.List;
  * @author Quoc
  */
 public interface TripService {
-    public List<Trip> getTrips(String kw);
+    public List<Trip> getTrips(String kw, int page);
     public boolean addOrUpdateTrip(Trip trip);
+    int countTrips();
 }
