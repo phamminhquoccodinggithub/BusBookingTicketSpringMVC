@@ -4,6 +4,8 @@
  */
 package com.mycompany.configs;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.formatter.BusFormatter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -61,15 +65,38 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         return msg;
     }
 
-    
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new BusFormatter());
     }
+
     @Bean
-    public CommonsMultipartResolver multipartResolver(){
+    public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("UTF-8");
         return resolver;
+    }
+
+    @Bean
+    public Cloudinary cloudinary() {
+        Cloudinary cloudinary
+                = new Cloudinary(ObjectUtils.asMap(
+                        "cloud_name", "phamminhquoccodinggithub",
+                        "api_key", "563442786462878",
+                        "api_secret", "nQV5srKX15mFjlUSrf6ci3H2Uvs",
+                        "secure", true));
+        return cloudinary;
+
+    }
+
+    @Override
+    public Validator getValidator() {
+        return  validator();
+    }
+    @Bean
+    public LocalValidatorFactoryBean validator(){
+        LocalValidatorFactoryBean v = new LocalValidatorFactoryBean();
+        v.setValidationMessageSource(messageSource());
+        return v;
     }
 }
