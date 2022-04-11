@@ -39,6 +39,12 @@ public class HomeController {
         model.addAttribute("trips", this.tripService.getTrips(null));
         return "index";
     }
+    @RequestMapping("/trip")
+    public String trip(Model model){
+        model.addAttribute("buses", this.busService.getBuses());
+        model.addAttribute("trips", this.tripService.getTrips(null));
+        return "trip";
+    }
 //    @RequestMapping("/")
 //    @Transactional
 //    public String index(Model model){

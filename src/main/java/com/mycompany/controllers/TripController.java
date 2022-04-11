@@ -29,15 +29,17 @@ public class TripController {
     @GetMapping("/trip-add")
     public String addView(Model model){
         model.addAttribute("buses", this.busService.getBuses());
-        model.addAttribute("trip", new Trip());
-        return "trip";
+        model.addAttribute("trips", new Trip());
+        return "trip-add";
     }
     @PostMapping("/trip-add")
     public String addHandler(Model model,
             @ModelAttribute(value = "trip") Trip t){
         if(this.tripService.addOrUpdateTrip(t)==true)
             return "redirect:/";
-        model.addAttribute("errMsg", "Somgthing wrong!! Please try again");
-        return "trip";
+        else
+            model.addAttribute("errMsg", "Somgthing wrong!! Please try again");
+        return "trip-add";
     }
+    
 }

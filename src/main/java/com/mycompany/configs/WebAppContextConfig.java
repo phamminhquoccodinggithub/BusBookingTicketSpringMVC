@@ -61,6 +61,7 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         return msg;
     }
 
+    
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new BusFormatter());
