@@ -58,11 +58,11 @@ public class Trip implements Serializable {
     private String destination;    
     @Column(name = "depature_time")
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date depatureTime;
     @Column(name = "arrive_time")
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date arriveTime;
     @Column(name = "price")
     private Long price;
