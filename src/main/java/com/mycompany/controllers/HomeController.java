@@ -48,6 +48,15 @@ public class HomeController {
         model.addAttribute("tripCounter", this.tripService.countTrips());
         return "trip";
     }
+    @RequestMapping("/book")
+    public String book(Model model,
+            @RequestParam(name = "kw", required = false)String kw,
+            @RequestParam(name = "page", defaultValue = "1") Integer page){
+        model.addAttribute("buses", this.busService.getBuses());
+        model.addAttribute("trips", this.tripService.getTrips(kw, page));
+        model.addAttribute("tripCounter", this.tripService.countTrips());
+        return "book-ticket";
+    }
 //    @RequestMapping("/")
 //    @Transactional
 //    public String index(Model model){

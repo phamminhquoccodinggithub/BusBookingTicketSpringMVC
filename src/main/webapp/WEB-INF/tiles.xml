@@ -26,4 +26,8 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Trip Detail"></put-attribute>
         <put-attribute name="content" value="/WEB-INF/pages/trip.jsp"></put-attribute>
     </definition>
+    <definition name="book-ticket" extends="baseLayout">
+        <put-attribute name="title" value="Book Ticket"></put-attribute>
+        <put-attribute name="content" value="/WEB-INF/pages/book-ticket.jsp"></put-attribute>
+    </definition>
 </tiles-definitions>
