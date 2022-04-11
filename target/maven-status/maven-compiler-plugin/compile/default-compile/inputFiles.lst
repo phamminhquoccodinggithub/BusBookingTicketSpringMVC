@@ -2,6 +2,7 @@ D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycom
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\pojo\Passenger.java
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\configs\HibernateConfig.java
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\service\impl\TripServiceImpl.java
+D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\controllers\TripViewDetailController.java
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\service\TripService.java
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\repository\BookingRepository.java
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\service\impl\BusServiceImpl.java
@@ -14,6 +15,7 @@ D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycom
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\pojo\Account.java
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\repository\impl\TripRepositoryImpl.java
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\repository\TripRepository.java
+D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\configs\TilesConfig.java
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\configs\DispatcherServletInit.java
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\pojo\Booking.java
 D:\java\netbean\spring\rebuild\BusBookingTicketSpringMVC\src\main\java\com\mycompany\pojo\Trip.java

@@ -39,6 +39,7 @@ public class TripRepositoryImpl implements TripRepository{
                     String.format("%%%s%%", kw));
             q.where(p);
         }
+        q.orderBy(b.desc(root.get("id")));
         Query query = session.createQuery(q);
         return query.getResultList();
     }    
