@@ -23,10 +23,7 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value="/" />">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/">Bus</a>
-            </li>
+            </li>            
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value="/trip" />">Trip</a>
             </li>

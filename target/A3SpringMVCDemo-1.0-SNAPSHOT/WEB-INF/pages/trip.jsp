@@ -49,7 +49,13 @@
                     <td>
                         ${trip.busId.busNo}</td>
                     <td>
-                        <input type="submit" value="Book" class="btn btn-primary" />
+                        <a class="btn btn-primary" href="<c:url value="/book" />">Book</a>
+                    </td>
+                    <td>
+                        <input type="button" value="Delete" class="btn btn-primary" />
+                    </td>
+                    <td>
+                        <input type="button" value="Update" class="btn btn-primary" />
                     </td>
                 </tr>
             </c:forEach>
