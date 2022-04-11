@@ -12,4 +12,5 @@ import com.mycompany.pojo.Account;
  */
 public interface AccountRepository {
     boolean addAccount(Account account);
+    Account getAccountByUserName(String username);
 }

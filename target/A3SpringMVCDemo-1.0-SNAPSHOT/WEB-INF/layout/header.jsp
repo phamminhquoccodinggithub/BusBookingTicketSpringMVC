@@ -27,9 +27,22 @@
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value="/trip" />">Trip</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/register" />">Register</a>
-            </li>
+            <c:if test="${pageContext.request.userPrincipal.name == null}">
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/register" />">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/login" />">Login</a>
+                </li>
+            </c:if>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <li class="nav-item ">
+                    <a class="nav-link text-danger" href="<c:url value="/" />">${pageContext.request.userPrincipal.name}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-success" href="<c:url value="/logout" />">Logout</a>
+                </li>
+            </c:if>    
         </ul>
     </div>
 </nav>

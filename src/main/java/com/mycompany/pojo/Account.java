@@ -35,7 +35,9 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Account.findByAvatar", query = "SELECT a FROM Account a WHERE a.avatar = :avatar"),
     @NamedQuery(name = "Account.findByRole", query = "SELECT a FROM Account a WHERE a.role = :role")})
 public class Account implements Serializable {
-
+    public static final String CUSTOMER = "ROLE_CUSTOMER";
+    public static final String ADMIN = "ROLE_ADMIN";
+    public static final String EMPLOYEE = "ROLE_EMPLOYEE";
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +59,7 @@ public class Account implements Serializable {
     private String avatar;
     @Size(max = 45)
     @Column(name = "role")
-    private String role;
+    private String role = CUSTOMER;
     @Transient
     private MultipartFile file;
     @Transient
