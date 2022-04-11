@@ -47,4 +47,8 @@ public class AccountController {
         return "register";
         
     }
+    @GetMapping("/login")
+    public String loginView(){
+        return "login";
+    }
 }

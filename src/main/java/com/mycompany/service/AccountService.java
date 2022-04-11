@@ -5,11 +5,13 @@
 package com.mycompany.service;
 
 import com.mycompany.pojo.Account;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
  * @author Quoc
  */
-public interface AccountService {
+public interface AccountService extends UserDetailsService{
     boolean addAccount(Account account);
+    Account getAccountByUserName(String username);
 }

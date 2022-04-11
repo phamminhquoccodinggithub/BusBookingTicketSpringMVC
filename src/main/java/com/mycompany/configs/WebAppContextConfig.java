@@ -77,18 +77,6 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         return resolver;
     }
 
-    @Bean
-    public Cloudinary cloudinary() {
-        Cloudinary cloudinary
-                = new Cloudinary(ObjectUtils.asMap(
-                        "cloud_name", "phamminhquoccodinggithub",
-                        "api_key", "563442786462878",
-                        "api_secret", "nQV5srKX15mFjlUSrf6ci3H2Uvs",
-                        "secure", true));
-        return cloudinary;
-
-    }
-
     @Override
     public Validator getValidator() {
         return  validator();
