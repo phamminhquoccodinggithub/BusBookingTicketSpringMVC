@@ -37,8 +37,10 @@
             </c:if>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
                 <li class="nav-item ">
-                    <a class="nav-link text-danger" href="<c:url value="/" />">${pageContext.request.userPrincipal.name}</a>
-                </li>
+                    <a class="nav-link text-danger" href="<c:url value="/" />">
+                        <img src="${pageContext.session.getAttribute("currentUser").avatar}" class="rounded-circle" width="40"/>
+                        ${pageContext.request.userPrincipal.name}</a>
+                </li>                
                 <li class="nav-item">
                     <a class="nav-link text-success" href="<c:url value="/logout" />">Logout</a>
                 </li>

@@ -51,12 +51,14 @@
                     <td>
                         <a class="btn btn-primary" href="<c:url value="/book" />">Book</a>
                     </td>
+                    
                     <td>
                         <input type="button" value="Delete" class="btn btn-primary" />
                     </td>
                     <td>
                         <input type="button" value="Update" class="btn btn-primary" />
-                    </td>
+                    </td>  
+                    
                 </tr>
             </c:forEach>
         

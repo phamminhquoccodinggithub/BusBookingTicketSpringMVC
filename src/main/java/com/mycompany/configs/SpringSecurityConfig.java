@@ -6,6 +6,7 @@ package com.mycompany.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.mycompany.handlers.LoginSuccessHandlers;
 import javax.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -30,30 +32,49 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
     "com.mycompany.service",
-    "com.mycompany.repository"
+    "com.mycompany.repository",
+    "com.mycompany.handlers"
+
 })
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private UserDetailsService userDetailService;
+    @Autowired
+    private LoginSuccessHandlers loginSuccessHandlers;
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandlers;
+
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder b = new BCryptPasswordEncoder();
         return b;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-       auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().usernameParameter("username").passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/").failureUrl("/login?error");
+        http.formLogin()//.defaultSuccessUrl("/")
+                .failureUrl("/login?error");
+        http.formLogin().successHandler(loginSuccessHandlers);
+        http.logout().logoutSuccessHandler(logoutSuccessHandlers);//.logoutSuccessUrl("/login");
         
-        http.logout().logoutSuccessUrl("/login");
+        http.exceptionHandling().accessDeniedPage("/login?accessDenied");
+        
+        http.authorizeRequests().antMatchers("/").permitAll()
+                .antMatchers("/admin/**")
+                .access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/**/**")
+                .access("hasAnyRole('ROLE_CUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_ADMIN')");
+        
         http.csrf().disable();
     }
+
     @Bean
     public Cloudinary cloudinary() {
         Cloudinary cloudinary
@@ -65,5 +86,5 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
         return cloudinary;
 
     }
-    
+
 }
